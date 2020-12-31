@@ -7,11 +7,11 @@ import (
 
 // UserService ...
 type UserService struct {
-	dataSource *datasource.UserDataSource
+	dataSource datasource.UserDataSource
 }
 
 // NewUserService ...
-func NewUserService(ds *datasource.UserDataSource) UserService {
+func NewUserService(ds datasource.UserDataSource) UserService {
 	return UserService{dataSource: ds}
 }
 

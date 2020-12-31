@@ -18,14 +18,10 @@ func Start(addr, port string) error {
 	if err != nil {
 		return err
 	}
-	us := service.NewUserService(&ds)
+	us := service.NewUserService(ds)
 	h := handler.NewHandler(us)
 	r.HandleFunc("/user", h.GetLatestUser).Methods("GET")
 	r.HandleFunc("/user", h.SetLatestUser).Methods("POST")
 	// inicia o servidor
-	err = http.ListenAndServe(fmt.Sprintf("%s:%s", addr, port), r)
-	if err != nil {
-		return err
-	}
-	return nil
+	return http.ListenAndServe(fmt.Sprintf("%s:%s", addr, port), r)
 }
